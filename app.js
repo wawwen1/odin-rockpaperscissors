@@ -7,8 +7,6 @@ function getComputerChoice() {
   return randomNumber == 2 ? "ROCK" : randomNumber == 1 ? "PAPER" : "SCISSORS";
 }
 
-// let playerSelection = prompt("Rock, paper or scissors?").toUpperCase();
-// let computerSelection = getComputerChoice();
 let score = 0;
 
 function playRound(playerSelection, computerSelection) {
