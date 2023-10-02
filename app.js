@@ -9,36 +9,36 @@ function getComputerChoice() {
 
 // let playerSelection = prompt("Rock, paper or scissors?").toUpperCase();
 // let computerSelection = getComputerChoice();
-let result = 0;
+let score = 0;
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection == computerSelection) {
     console.log("It's a tie!");
-    return result
+    return score
   }
   if (playerSelection == "ROCK" & computerSelection == "PAPER") {
     console.log("You lose!");
-    return result--
+    return score--
   }
   if (playerSelection == "ROCK" & computerSelection == "SCISSORS") {
     console.log("You win!");
-    return result++
+    return score++
   }
   if (playerSelection == "PAPER" & computerSelection == "SCISSORS") {
     console.log("You lose!");
-    return result--
+    return score--
   }
   if (playerSelection == "PAPER" & computerSelection == "ROCK") {
     console.log("You win!");
-    return result++
+    return score++
   }
   if(playerSelection == "SCISSORS" & computerSelection == "ROCK") {
     console.log("You lose!")
-    return result--
+    return score--
   }
   if (playerSelection == "SCISSORS" & computerSelection == "PAPER") {
     console.log("You win!");
-    return result++
+    return score++
   }
 }
 
@@ -50,8 +50,8 @@ function game(rounds) {
     playRound(playerSelection, computerSelection);
 
     // if statement so score doesn't go below 0
-    result < 0 ? result = 0 : result; 
-    console.log(result);
+    score < 0 ? score = 0 : score; 
+    console.log(score);
   }
 }
 
