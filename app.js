@@ -42,19 +42,6 @@ function playRound(playerSelection, computerSelection) {
   gameResult(resultMessage);
 }
 
-function game(rounds) {
-  for (let i = 0; i < rounds; i++) {
-    let playerSelection = prompt("Rock, paper or scissors?").toUpperCase();
-    let computerSelection = getComputerChoice();
-
-    playRound(playerSelection, computerSelection);
-
-    // if statement so score doesn't go below 0
-    score < 0 ? (score = 0) : score;
-    console.log(score);
-  }
-}
-
 const gameResult = (message) => {
   let resultDiv = document.querySelector("result");
   resultDiv.textContent = message;
@@ -65,16 +52,22 @@ const updateScore = () => {
   scoreDiv.textContent = "Score: " + score;
 };
 
+const buttonClick = (selection) => {
+  let computerSelection = getComputerChoice();
+  playRound(selection, computerSelection);
+  // if statement so score doesn't go below 0
+  score < 0 ? (score = 0) : score;
+  updateScore();
+};
+
 document.querySelector("#rockButton").addEventListener("click", function () {
-  console.log("rock");
+  buttonClick("rock")
 });
 
 document.querySelector("#paperButton").addEventListener("click", function () {
-  console.log("paper");
+  buttonClick("paper")
 });
 
-document
-  .querySelector("#scissorsButton")
-  .addEventListener("click", function () {
-    console.log("scissors");
+document.querySelector("#scissorsButton").addEventListener("click", function () {
+    buttonClick("scissors")
   });
