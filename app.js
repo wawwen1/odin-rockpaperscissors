@@ -43,12 +43,12 @@ function playRound(playerSelection, computerSelection) {
 }
 
 const gameResult = (message) => {
-  let resultDiv = document.querySelector("result");
+  let resultDiv = document.querySelector(".result");
   resultDiv.textContent = message;
 };
 
 const updateScore = () => {
-  let scoreDiv = document.querySelector("score");
+  let scoreDiv = document.querySelector(".score");
   scoreDiv.textContent = "Score: " + score;
 };
 
@@ -56,18 +56,18 @@ const buttonClick = (selection) => {
   let computerSelection = getComputerChoice();
   playRound(selection, computerSelection);
   // if statement so score doesn't go below 0
-  score < 0 ? (score = 0) : score;
+  score < 0 ? score = 0: score;
   updateScore();
 };
 
 document.querySelector("#rockButton").addEventListener("click", function () {
-  buttonClick("rock")
+  buttonClick("ROCK");
 });
 
 document.querySelector("#paperButton").addEventListener("click", function () {
-  buttonClick("paper")
+  buttonClick("PAPER");
 });
 
 document.querySelector("#scissorsButton").addEventListener("click", function () {
-    buttonClick("scissors")
+    buttonClick("SCISSORS");
   });
