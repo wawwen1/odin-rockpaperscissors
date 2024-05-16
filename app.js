@@ -7,37 +7,37 @@ function getComputerChoice() {
   return randomNumber == 2 ? "ROCK" : randomNumber == 1 ? "PAPER" : "SCISSORS";
 }
 
-let score = 0;
+let playerScore = 0;
+let computerScore = 0;
 
 function playRound(playerSelection, computerSelection) {
   let resultMessage;
   if (playerSelection == computerSelection) {
     resultMessage = "It's a tie!";
-    score;
   }
   if ((playerSelection == "ROCK") & (computerSelection == "PAPER")) {
     resultMessage = "You lose!";
-    score--;
+    computerScore++;
   }
   if ((playerSelection == "ROCK") & (computerSelection == "SCISSORS")) {
     resultMessage = "You win!";
-    score++;
+    playerScore++;
   }
   if ((playerSelection == "PAPER") & (computerSelection == "SCISSORS")) {
     resultMessage = "You lose!";
-    score--;
+    computerScore++;
   }
   if ((playerSelection == "PAPER") & (computerSelection == "ROCK")) {
     resultMessage = "You win!";
-    score++;
+    playerScore++;
   }
   if ((playerSelection == "SCISSORS") & (computerSelection == "ROCK")) {
     resultMessage = "You lose!";
-    score--;
+    computerScore++;
   }
   if ((playerSelection == "SCISSORS") & (computerSelection == "PAPER")) {
     resultMessage = "You win!";
-    score++;
+    playerScore++;
   }
   gameResult(resultMessage);
 }
@@ -47,17 +47,39 @@ const gameResult = (message) => {
   resultDiv.textContent = message;
 };
 
-const updateScore = () => {
-  let scoreDiv = document.querySelector(".score");
-  scoreDiv.textContent = "Score: " + score;
+const updatePlayerScore = () => {
+  let playerScoreDiv = document.querySelector(".playerScore");
+  playerScoreDiv.textContent = "Player Score: " + playerScore;
+
+  if (playerScore == 5) {
+    announceWinner("Player 1 is the winner!");
+  }
+};
+
+const updateComputerScore = () => {
+  let computerScoreDiv = document.querySelector(".computerScore");
+  computerScoreDiv.textContent = "Computer Score: " + computerScore;
+
+  if (computerScore == 5) {
+    announceWinner("Computer is the winner!");
+  }
+};
+
+const announceWinner = (message) => {
+  let winnerDiv = document.querySelector(".winner");
+  winnerDiv.textContent = message;
+  setTimeout(() => {
+    document.location.reload();
+    window.alert(message);
+  }, 100);
 };
 
 const buttonClick = (selection) => {
   let computerSelection = getComputerChoice();
   playRound(selection, computerSelection);
-  // if statement so score doesn't go below 0
-  score < 0 ? score = 0: score;
-  updateScore();
+
+  updatePlayerScore();
+  updateComputerScore();
 };
 
 document.querySelector("#rockButton").addEventListener("click", function () {
@@ -69,5 +91,5 @@ document.querySelector("#paperButton").addEventListener("click", function () {
 });
 
 document.querySelector("#scissorsButton").addEventListener("click", function () {
-    buttonClick("SCISSORS");
+  buttonClick("SCISSORS");
   });
